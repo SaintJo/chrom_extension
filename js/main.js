@@ -16,7 +16,8 @@ inputBtn.addEventListener("click", function() {
 function renderLeads () {
 	let listItems = "";
 	for (let i = 0; i < myLeads.length; i++) {
-		listItems+= "<li>" + myLeads[i] + "</li>";
+		// Make the link open a new tab
+		listItems+= "<li><a href='" + myLeads[i] + "'>" + myLeads[i] + "</a></li>";
 	
 		// Create element li
 		// const li = document.createElement("li");
