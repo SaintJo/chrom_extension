@@ -17,8 +17,10 @@ function renderLeads () {
 	let listItems = "";
 	for (let i = 0; i < myLeads.length; i++) {
 		// Make the link open a new tab
-		listItems+= "<li><a href='" + myLeads[i] + "'>" + myLeads[i] + "</a></li>";
-	
+		// listItems+= "<li><a target ='_blank' href='" + myLeads[i] + "'>" + myLeads[i] + "</a></li>";
+		listItems+= `<li>
+						<a target ='_blank' href='${myLeads[i]}'>${myLeads[i]}</a>
+					</li>`
 		// Create element li
 		// const li = document.createElement("li");
 		// li.textContent = myLeads[i];
