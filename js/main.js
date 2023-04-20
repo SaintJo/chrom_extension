@@ -6,7 +6,6 @@ const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 
-const tabs = [{url: "https://www.google.com"}];
 
 if (leadsFromLocalStorage) {
 	myLeads = leadsFromLocalStorage;
@@ -32,12 +31,14 @@ function render (leads) {
 }
 
 deleteBtn.addEventListener("dblclick", function(){
+	
 	localStorage.clear();
 	myLeads = [];
 	render(myLeads);
 })
 
 inputBtn.addEventListener("click", function() {
+	
 	myLeads.push(inputEl.value);
 	// Clear out the input field
 	inputEl.value = "";
@@ -46,16 +47,14 @@ inputBtn.addEventListener("click", function() {
 });
 
 tabBtn.addEventListener("click", function(){
-	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 	
-	// since only one tab should be active and in the current window at once
-  	// the return variable should only have one entry
-  	let activeTab = tabs[0];
-  	let activeTabId = activeTab.id; // or do whatever you need
-});
-	myLeads.push(tabs[0].url);
-	localStorage.setItem("myLeads", JSON.stringify(myLeads));
-	render(myLeads);
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        
+        myLeads.push(tabs[0].url)
+        localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        render(myLeads)
+    })
+
 })
 
 
